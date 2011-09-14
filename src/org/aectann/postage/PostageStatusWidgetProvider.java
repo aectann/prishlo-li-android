@@ -57,5 +57,13 @@ public class PostageStatusWidgetProvider extends AppWidgetProvider {
       }
     }
   }
+  
+  @Override
+  public void onDeleted(Context context, int[] appWidgetIds) {
+    super.onDeleted(context, appWidgetIds);
+    for (int id : appWidgetIds) {
+      PreferenceManager.getDefaultSharedPreferences(context).edit().remove(String.valueOf(id)).commit();
+    }
+  }
 
 }
