@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.List;
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.Menu;
 import android.support.v4.view.MenuItem;
 import android.text.format.DateFormat;
@@ -15,7 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class PostageActivity extends FragmentActivity {
+public class PostageActivity extends AsyncTaskAwareActivity {
 
   private TextView trackingNumber;
 
@@ -87,13 +86,13 @@ public class PostageActivity extends FragmentActivity {
         finish();
         break;
       case R.id.refresh:
-        new TrackingStatusRefreshTask(this) {
+        executeTask(new TrackingStatusRefreshTask(this) {
           protected void onProgressUpdate(TrackingInfo... values) {
             TrackingInfo updatedTrackingInfo = values[0];
             TrackingStorageUtils.store(PostageActivity.this, updatedTrackingInfo);
             updateList(updatedTrackingInfo);
           };
-        }.execute(getTrackingNumber());
+        }, getTrackingNumber());
         break;
       default:
         break;

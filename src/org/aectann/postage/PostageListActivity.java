@@ -1,9 +1,10 @@
 package org.aectann.postage;
 
 
+
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.Menu;
 import android.support.v4.view.MenuItem;
 import android.view.View;
@@ -11,7 +12,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
-public class PostageListActivity extends FragmentActivity {
+public class PostageListActivity extends AsyncTaskAwareActivity {
 
   private static final int ADD_POSTAGE = 100;
   private static final int SHOW_POSTAGE = 101;
@@ -50,7 +51,35 @@ public class PostageListActivity extends FragmentActivity {
         startActivityForResult(new Intent(this, AddPostageActivity.class), ADD_POSTAGE);
         break;
       case R.id.refresh:
-        refresh();
+        final String[] trackingNumbers = trackingsInfoAdapter.getTrackingNumbers();
+        executeTask(new TrackingStatusRefreshTask(this) {
+          
+          int count = 0;
+          ProgressDialog dialog;
+          
+          protected void onPreExecute() {
+            dialog = new ProgressDialog(PostageListActivity.this);
+            dialog.setTitle("Обновление");
+            dialog.setMessage("Загружаем данные о посылках");
+            dialog.setIndeterminate(false);
+            dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+            dialog.setMax(trackingNumbers.length);
+            dialog.show();
+          };
+          
+          protected void onProgressUpdate(TrackingInfo... values) {
+            for (TrackingInfo trackingInfo : values) {
+              count++;
+              TrackingStorageUtils.store(PostageListActivity.this, trackingInfo);
+              dialog.setProgress(count);
+            }
+          };
+          
+          protected void onPostExecute(String result) {
+            dialog.dismiss();
+            reloadFromStorage();
+          };
+        }, (Object[]) trackingNumbers);
         break;
       default:
         break;
@@ -58,7 +87,7 @@ public class PostageListActivity extends FragmentActivity {
     return super.onOptionsItemSelected(item);
   }
 
-  private void refresh() {
+  private void reloadFromStorage() {
     trackingsInfoAdapter.notifyDataSetChanged();
     list.invalidate();
   }
@@ -70,17 +99,30 @@ public class PostageListActivity extends FragmentActivity {
         case ADD_POSTAGE:
           String trackingNumber = data.getStringExtra(Constants.TRACKING_NUMBER);
           final String name = data.getStringExtra(Constants.NAME);
-          new TrackingStatusRefreshTask(this) {
+          executeTask(new TrackingStatusRefreshTask(this) {
+            
+            ProgressDialog dialog;
+            
+            @Override
+            protected void onPreExecute() {
+              dialog = ProgressDialog.show(PostageListActivity.this, "Поиск", "Ищем информацию о послылке..");
+            }
+            
             protected void onProgressUpdate(TrackingInfo... values) {
               TrackingInfo loadedInfo = values[0];
               loadedInfo.setName(name);
               TrackingStorageUtils.store(PostageListActivity.this, loadedInfo);
-              refresh();
             };
-          }.execute(trackingNumber);
+            
+            @Override
+            protected void onPostExecute(String result) {
+              reloadFromStorage();
+              dialog.dismiss();
+            }
+          }, (Object[]) new String[]{trackingNumber});
           break;
         case SHOW_POSTAGE:
-          refresh();
+          reloadFromStorage();
           break;
       }
     }
