@@ -65,5 +65,5 @@ public class PostageStatusWidgetProvider extends AppWidgetProvider {
       PreferenceManager.getDefaultSharedPreferences(context).edit().remove(String.valueOf(id)).commit();
     }
   }
-
+  
 }
