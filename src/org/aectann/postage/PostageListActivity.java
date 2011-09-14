@@ -79,7 +79,7 @@ public class PostageListActivity extends AsyncTaskAwareActivity {
             dialog.dismiss();
             reloadFromStorage();
           };
-        }, (Object[]) trackingNumbers);
+        }, trackingNumbers);
         break;
       default:
         break;
@@ -119,7 +119,7 @@ public class PostageListActivity extends AsyncTaskAwareActivity {
               reloadFromStorage();
               dialog.dismiss();
             }
-          }, (Object[]) new String[]{trackingNumber});
+          }, trackingNumber);
           break;
         case SHOW_POSTAGE:
           reloadFromStorage();

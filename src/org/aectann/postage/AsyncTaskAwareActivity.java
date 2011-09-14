@@ -19,7 +19,7 @@ public class AsyncTaskAwareActivity extends FragmentActivity {
   }
 
   @SuppressWarnings("rawtypes")
-  protected void executeTask(AsyncTask task, Object... params) {
+  protected void executeTask(AsyncTask task, String... params) {
     for (Iterator<AsyncTask> iterator = tasks.iterator(); iterator.hasNext();) {
       AsyncTask next = iterator.next();
       if (next.isCancelled() || next.getStatus() == AsyncTask.Status.FINISHED){
