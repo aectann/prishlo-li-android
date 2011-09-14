@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class TrackingInfo implements Serializable{
+public class TrackingInfo implements Serializable, Comparable<TrackingInfo>{
 
   private static final long serialVersionUID = 4795313244600591432L;
 
@@ -106,6 +106,25 @@ public class TrackingInfo implements Serializable{
 
   public void setFrom(String from) {
     this.from = from;
+  }
+
+  @Override
+  public int compareTo(TrackingInfo another) {
+    Date date = getDate();
+    Date anotherDate = another.getDate();
+    if (date != null) {
+      if (anotherDate != null) {
+        return -date.compareTo(anotherDate);
+      } else {
+        return -1;
+      }
+    } else {
+      if (anotherDate == null) {
+        return -getName().compareTo(another.getName());
+      } else {
+        return 1;
+      }
+    }
   }
   
 }

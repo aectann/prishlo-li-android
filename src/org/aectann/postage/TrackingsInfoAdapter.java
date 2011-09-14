@@ -2,9 +2,7 @@ package org.aectann.postage;
 
 import static android.content.Context.MODE_PRIVATE;
 
-import java.io.File;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.Date;
 
 import android.content.Context;
@@ -19,7 +17,7 @@ final class TrackingsInfoAdapter extends BaseAdapter {
   
   private final Context context;
   private final LayoutInflater layoutInflater;
-  private File[] trackings;
+  private TrackingInfo[] trackings;
   
   class ViewHolder {
     TextView status;
@@ -38,13 +36,12 @@ final class TrackingsInfoAdapter extends BaseAdapter {
   }
 
   private void updateTrackingsList() {
-    trackings = context.getDir(Constants.TRACKINGS, MODE_PRIVATE).listFiles();
-    Arrays.sort(trackings, new Comparator<File>() {
-
-      @Override
-      public int compare(File f1, File f2) {
-        return -Long.valueOf(f1.lastModified()).compareTo(f2.lastModified()) ;
-      }});
+    String[] trackingNumbers = context.getDir(Constants.TRACKINGS, MODE_PRIVATE).list();
+    trackings = new TrackingInfo[trackingNumbers.length];
+    for (int i = 0; i < trackingNumbers.length; i++) {
+      trackings[i] = TrackingStorageUtils.loadStoredTrackingInfo(trackingNumbers[i], context);
+    }
+    Arrays.sort(trackings);
   }
 
   @Override
@@ -85,12 +82,20 @@ final class TrackingsInfoAdapter extends BaseAdapter {
   }
   
   public String getTrackingNumber(int position) {
-    return trackings[position].getName();
+    return trackings[position].getTrackingNumber();
+  }
+  
+  public String[] getTrackingNumbers() {
+    String[] result = new String[trackings.length];
+    for (int i = 0; i < result.length; i++) {
+      result[i] = trackings[i].getTrackingNumber();
+    }
+    return result;
   }
 
   @Override
   public TrackingInfo getItem(int position) {
-    return TrackingStorageUtils.loadStoredTrackingInfo(getTrackingNumber(position), this.context);
+    return trackings[position];
   }
 
   @Override
