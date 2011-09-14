@@ -1,10 +1,18 @@
 package org.aectann.postage;
 
+import java.util.Date;
+
+import javax.xml.parsers.FactoryConfigurationError;
+
+import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.text.format.DateFormat;
+import android.view.View;
 import android.widget.RemoteViews;
 
 public class PostageStatusWidgetProvider extends AppWidgetProvider {
@@ -13,12 +21,40 @@ public class PostageStatusWidgetProvider extends AppWidgetProvider {
   public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
     for (int id : appWidgetIds) {
       RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.postage_status);
-//      String trackingNumber = PreferenceManager.getDefaultSharedPreferences(context).getString(PostageActivity.TRACKING, "");
-//      TrackingInfo trackingInfo = TrackingStatusRefreshTask.syncRequest(context, trackingNumber);
-//      views.setTextViewText(R.id.title, trackingNumber);
-//      views.setTextViewText(R.id.status, trackingInfo.getStatus());
-//      views.setTextViewText(R.id.date, DateFormat.getMediumDateFormat(context).format(trackingInfo.getDate()));
-      appWidgetManager.updateAppWidget(new int[] {id}, views);
+      updateWidget(context, appWidgetManager, id, views);
+    }
+  }
+  
+  public static void updateWidget(Context context, AppWidgetManager appWidgetManager, int id,
+      RemoteViews views) throws FactoryConfigurationError {
+    String trackingNumber = PreferenceManager.getDefaultSharedPreferences(context).getString(String.valueOf(id), null);
+    if (trackingNumber != null) {
+      TrackingInfo trackingInfo;
+      if (TrackingStorageUtils.isUpdateNeeded(context, trackingNumber)) {
+        trackingInfo = TrackingStatusRefreshTask.syncRequest(context, trackingNumber);
+      } else {
+        trackingInfo = TrackingStorageUtils.loadStoredTrackingInfo(trackingNumber, context);
+      }
+      if (trackingInfo != null) {
+        String status = trackingInfo.getStatus();
+        views.setTextViewText(R.id.status, status != null ? status : "Нет данных");
+        views.setTextViewText(R.id.title, trackingInfo.getName());
+        Date date = (Date) trackingInfo.getDate();
+        if (date != null) {
+          views.setTextViewText(R.id.date_month, DateFormat.format("MMM",date));
+          views.setViewVisibility(R.id.date_month, View.VISIBLE);
+          views.setTextViewText(R.id.date_day, DateFormat.format("d", date));
+        } else {
+          views.setTextViewText(R.id.date_month,"");
+          views.setViewVisibility(R.id.date_month, View.GONE);
+          views.setTextViewText(R.id.date_day, "X");
+        }
+        Intent showPostageInfo = new Intent(context, PostageActivity.class);
+        showPostageInfo.setData(Uri.fromParts(context.getPackageName(), trackingNumber, null));
+        PendingIntent pendingAppIntent = PendingIntent.getActivity(context, 0, showPostageInfo, 0);
+        views.setOnClickPendingIntent(R.id.widget, pendingAppIntent);
+        appWidgetManager.updateAppWidget(id, views);
+      }
     }
   }
 

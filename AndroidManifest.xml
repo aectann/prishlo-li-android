@@ -23,5 +23,10 @@
 			<meta-data android:name="android.appwidget.provider"
 				android:resource="@xml/postage_status_widget" />
 		</receiver>
+		<activity android:name=".SelectPostageActivity">
+			<intent-filter>
+				<action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+			</intent-filter>
+		</activity>
 	</application>
 </manifest>

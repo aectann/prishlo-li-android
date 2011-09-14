@@ -101,6 +101,10 @@ public class PostageActivity extends AsyncTaskAwareActivity {
   }
   
   private String getTrackingNumber() {
-    return getIntent().getStringExtra(Constants.TRACKING_NUMBER);
+    String trackingNumber = getIntent().getStringExtra(Constants.TRACKING_NUMBER);
+    if (trackingNumber == null || trackingNumber.length() == 0) {
+      trackingNumber = getIntent().getData().getEncodedSchemeSpecificPart();
+    }
+    return trackingNumber;
   }
 }

@@ -15,6 +15,8 @@ import android.content.Context;
 
 public class TrackingStorageUtils {
 
+  private static final int FOUR_HOURS = 14400000;
+
   public static void delete(Context context, String trackingNumber){
     try {
       File trackingFile = new File(context.getDir(Constants.TRACKINGS, MODE_PRIVATE), trackingNumber);
@@ -58,6 +60,11 @@ public class TrackingStorageUtils {
         }
       }
     }
+  }
+
+  public static boolean isUpdateNeeded(Context context, String trackingNumber) {
+    File trackingFile = new File(context.getDir(Constants.TRACKINGS, MODE_PRIVATE), trackingNumber);
+    return !trackingFile.exists() || System.currentTimeMillis() - trackingFile.lastModified() > FOUR_HOURS;
   }
 
 }

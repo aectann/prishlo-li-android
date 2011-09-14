@@ -26,7 +26,12 @@ public class PostageListActivity extends AsyncTaskAwareActivity {
     list = (ListView) findViewById(android.R.id.list);
     trackingsInfoAdapter = new TrackingsInfoAdapter(this);
     list.setAdapter(trackingsInfoAdapter);
-    list.setOnItemClickListener(new OnItemClickListener() {
+    list.setOnItemClickListener(getOnItemClickListener());
+    list.setEmptyView(findViewById(R.id.empty));
+  }
+
+  protected OnItemClickListener getOnItemClickListener() {
+    return new OnItemClickListener() {
 
       @Override
       public void onItemClick(AdapterView<?> list, View view, int position, long id) {
@@ -34,8 +39,7 @@ public class PostageListActivity extends AsyncTaskAwareActivity {
         Intent intent = new Intent(PostageListActivity.this, PostageActivity.class);
         intent.putExtra(Constants.TRACKING_NUMBER, trackingNumber);
         startActivityForResult(intent, SHOW_POSTAGE);
-      }});
-    list.setEmptyView(findViewById(R.id.empty));
+      }};
   }
   
   @Override
