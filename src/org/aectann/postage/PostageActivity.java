@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.view.Menu;
 import android.support.v4.view.MenuItem;
@@ -87,11 +88,27 @@ public class PostageActivity extends AsyncTaskAwareActivity {
         break;
       case R.id.refresh:
         executeTask(new TrackingStatusRefreshTask(this) {
+          
+          ProgressDialog dialog;
+          
+          TrackingInfo updated;
+          
+          @Override
+          protected void onPreExecute() {
+            dialog = ProgressDialog.show(PostageActivity.this, "Обновление", "Загружаем информацию о посылке..");
+          }
+          
           protected void onProgressUpdate(TrackingInfo... values) {
             TrackingInfo updatedTrackingInfo = values[0];
             TrackingStorageUtils.store(PostageActivity.this, updatedTrackingInfo);
-            updateList(updatedTrackingInfo);
+            updated = updatedTrackingInfo;
           };
+          
+          @Override
+          protected void onPostExecute(String result) {
+            updateList(updated);
+            dialog.dismiss();
+          }
         }, getTrackingNumber());
         break;
       default:
