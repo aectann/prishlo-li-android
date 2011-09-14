@@ -51,40 +51,55 @@ public class PostageListActivity extends AsyncTaskAwareActivity {
         startActivityForResult(new Intent(this, AddPostageActivity.class), ADD_POSTAGE);
         break;
       case R.id.refresh:
-        final String[] trackingNumbers = trackingsInfoAdapter.getTrackingNumbers();
-        executeTask(new TrackingStatusRefreshTask(this) {
-          
-          int count = 0;
-          ProgressDialog dialog;
-          
-          protected void onPreExecute() {
-            dialog = new ProgressDialog(PostageListActivity.this);
-            dialog.setTitle("Обновление");
-            dialog.setMessage("Загружаем данные о посылках");
-            dialog.setIndeterminate(false);
-            dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-            dialog.setMax(trackingNumbers.length);
-            dialog.show();
-          };
-          
-          protected void onProgressUpdate(TrackingInfo... values) {
-            for (TrackingInfo trackingInfo : values) {
-              count++;
-              TrackingStorageUtils.store(PostageListActivity.this, trackingInfo);
-              dialog.setProgress(count);
-            }
-          };
-          
-          protected void onPostExecute(String result) {
-            dialog.dismiss();
-            reloadFromStorage();
-          };
-        }, trackingNumbers);
+        refresh();
         break;
       default:
         break;
     }
     return super.onOptionsItemSelected(item);
+  }
+  
+  @Override
+  protected void onStart() {
+    super.onStart();
+    Postages application = (Postages) getApplication();
+    if (!application.isListUpdated()) {
+      refresh();
+    }
+  }
+
+  private void refresh() {
+    final String[] trackingNumbers = trackingsInfoAdapter.getTrackingNumbers();
+    executeTask(new TrackingStatusRefreshTask(this) {
+      
+      int count = 0;
+      ProgressDialog dialog;
+      
+      protected void onPreExecute() {
+        dialog = new ProgressDialog(PostageListActivity.this);
+        dialog.setTitle("Обновление");
+        dialog.setMessage("Загружаем данные о посылках");
+        dialog.setIndeterminate(false);
+        dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        dialog.setMax(trackingNumbers.length);
+        dialog.show();
+      };
+      
+      protected void onProgressUpdate(TrackingInfo... values) {
+        for (TrackingInfo trackingInfo : values) {
+          count++;
+          TrackingStorageUtils.store(PostageListActivity.this, trackingInfo);
+          dialog.setProgress(count);
+        }
+      };
+      
+      protected void onPostExecute(String result) {
+        dialog.dismiss();
+        reloadFromStorage();
+        Postages application = (Postages) getApplication();
+        application.setListUpdated();
+      };
+    }, trackingNumbers);
   }
 
   private void reloadFromStorage() {
