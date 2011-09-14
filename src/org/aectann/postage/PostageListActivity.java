@@ -34,6 +34,7 @@ public class PostageListActivity extends FragmentActivity {
         intent.putExtra(Constants.TRACKING_NUMBER, trackingNumber);
         startActivityForResult(intent, SHOW_POSTAGE);
       }});
+    list.setEmptyView(findViewById(R.id.empty));
   }
   
   @Override

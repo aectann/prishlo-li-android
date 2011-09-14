@@ -38,6 +38,7 @@ public class PostageActivity extends FragmentActivity {
     TrackingInfo trackingInfo = TrackingStorageUtils.loadStoredTrackingInfo(tracking, this);
     setTitle(trackingInfo.getName());
     list = (ListView) findViewById(R.id.list);
+    list.setEmptyView(findViewById(R.id.empty));
     updateList(trackingInfo);
   }
 
