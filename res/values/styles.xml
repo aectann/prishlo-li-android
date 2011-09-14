@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+   	<style parent="Theme.Sherlock.Light" name="ActionBar">
+		<item name="abBackground">#1E82BC</item>
+		<item name="abTitleTextStyle">@style/ActionBar.Title</item>
+		<item name="abIcon">@android:color/transparent</item>
+    </style>
+    
+    <style name="ActionBar.Title">
+    	<item name="android:textColor">#fff</item>
+    	<item name="android:textStyle">bold</item>
+    	<item name="android:textSize">18sp</item>
+    </style>
+</resources>

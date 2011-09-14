@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:padding="5dip">
+	<LinearLayout android:orientation="vertical"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:background="@drawable/widget_background"
+		android:layout_gravity="center_vertical" android:padding="5dip"
+		android:gravity="center_horizontal">
+		<TextView android:text="EE969565046US" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:id="@+id/title"
+			android:textSize="10sp"
+			android:textColor="#39596B" />
+		<TextView android:text="Импорт EMS" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:id="@+id/status"
+			android:textSize="16sp" android:textStyle="bold"
+			android:textColor="#1E82BC" android:gravity="center_horizontal" />
+		<TextView android:text="25.09.2011" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:id="@+id/date"
+			android:textSize="10sp"
+			android:textColor="#90999E"></TextView>
+	</LinearLayout>
+</FrameLayout>

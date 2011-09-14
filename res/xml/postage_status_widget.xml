@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+	android:minHeight="80dip" android:minWidth="240dip"
+	android:updatePeriodMillis="14400000"
+	android:initialLayout="@layout/postage_status"/>
