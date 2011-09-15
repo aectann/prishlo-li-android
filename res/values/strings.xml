@@ -6,7 +6,8 @@
     <string name="delete_postage">Удалить посылку</string>
     <string name="provide_postage_number">Укажите номер посылки</string>
     <string name="updating">Обновление</string>
-    <string name="loading_postages_data">Загружаем данные о посылках</string>
+    <string name="loading_postages_data">Загружаем данные о посылках..</string>
+    <string name="loading_postage_data">Загружаем информацию о посылке..</string>
     <string name="search">Поиск</string>
     <string name="searching_postage_data">Ищем информацию о послылке..</string>
     <string name="select_a_postage">Выберите посылку</string>

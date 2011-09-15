@@ -95,7 +95,7 @@ public class PostageActivity extends AsyncTaskAwareActivity {
           
           @Override
           protected void onPreExecute() {
-            dialog = ProgressDialog.show(PostageActivity.this, "Обновление", "Загружаем информацию о посылке..");
+            dialog = ProgressDialog.show(PostageActivity.this, getString(R.string.updating), getString(R.string.loading_postage_data));
           }
           
           protected void onProgressUpdate(TrackingInfo... values) {
