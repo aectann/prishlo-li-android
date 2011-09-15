@@ -4,5 +4,5 @@
 		android:layout_height="match_parent"></ListView>
 	<TextView android:id="@+id/empty" android:layout_height="match_parent"
 		android:layout_width="match_parent"
-		android:text="Нажмите + чтобы добавить посылку" style="@style/EmptyViewText"/>
+		android:text="@string/press_plus_to_add_a_postage" style="@style/EmptyViewText"/>
 </merge>

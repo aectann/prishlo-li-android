@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="input_width">260dip</dimen>
+    <dimen name="postage_list_item_min_height">84dip</dimen>
+    <dimen name="status_item_min_height">64dip</dimen>
+
+    <dimen name="gap_tiny">5dip</dimen>
+    <dimen name="gap_small">7dip</dimen>
+
+    <dimen name="date_circle_size">50dip</dimen>
+    
+    <dimen name="date_day_text_size">18sp</dimen>
+    <dimen name="date_month_text_size">10sp</dimen>
+    <dimen name="list_item_secondary_text_size">10sp</dimen>
+    <dimen name="list_item_primary_text_size">16sp</dimen>
+    <dimen name="text_size_big">18sp</dimen>
+</resources>

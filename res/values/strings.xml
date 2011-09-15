@@ -3,6 +3,7 @@
     <string name="hello">Hello World, PostagesActivity!</string>
     <string name="app_name">Пришло ли?</string>
     <string name="refresh">Обновить</string>
+    <string name="delete_postage">Удалить посылку</string>
     <string name="provide_postage_number">Укажите номер посылки</string>
     <string name="updating">Обновление</string>
     <string name="loading_postages_data">Загружаем данные о посылках</string>
@@ -11,4 +12,9 @@
     <string name="select_a_postage">Выберите посылку</string>
     <string name="no_data">Нет данных</string>
     <string name="error_loading_postage_data">Ошибка при загрузке статуса.</string>
+    <string name="postage_number">Номер посылки*</string>
+    <string name="postage_label">Название</string>
+    <string name="add">Добавить</string>
+    <string name="press_plus_to_add_a_postage">Нажмите + чтобы добавить посылку</string>
+    <string name="postage_number_label">Номер послыки</string>
 </resources>

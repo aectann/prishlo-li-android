@@ -4,17 +4,17 @@
 	android:layout_height="match_parent" android:orientation="vertical">
 	<LinearLayout android:id="@+id/info" android:layout_width="wrap_content"
 		android:layout_height="wrap_content" android:orientation="vertical"
-		android:padding="7dip" android:layout_weight="0">
+		android:padding="@dimen/gap_small" android:layout_weight="0">
 		<TextView android:layout_width="wrap_content"
-			android:layout_height="wrap_content" android:text="Номер послыки" />
+			android:layout_height="wrap_content" android:text="@string/postage_number_label" />
 		<TextView android:layout_width="wrap_content" android:id="@+id/trackingNumber"
 			android:layout_height="wrap_content" android:text="US3287368272RU"
-			android:layout_gravity="center_horizontal" android:textSize="18sp"
-			android:textColor="#1E82BC" />
+			android:layout_gravity="center_horizontal" android:textSize="@dimen/text_size_big"
+			android:textColor="@color/main_theme_color" />
 	</LinearLayout>
 	<ListView android:id="@+id/list" android:layout_height="match_parent"
 		android:layout_width="match_parent" android:layout_weight="1"/>
 	<TextView android:id="@+id/empty" android:layout_height="match_parent"
 		android:layout_width="match_parent" android:layout_weight="1"
-		android:text="Нет данных" style="@style/EmptyViewText"/>
+		android:text="@string/no_data" style="@style/EmptyViewText"/>
 </LinearLayout>

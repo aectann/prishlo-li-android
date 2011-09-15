@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="@dimen/date_circle_size" android:layout_height="@dimen/date_circle_size"
+	android:background="@drawable/date_background">
+	<LinearLayout android:id="@+id/date_container"
+		android:orientation="vertical" android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:layout_gravity="center"
+		android:gravity="center_horizontal">
+		<TextView android:text="25" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:id="@+id/date_day"
+			android:textSize="@dimen/date_day_text_size" android:textColor="@color/action_bar_title_color"
+			android:textStyle="bold" />
+		<TextView android:text="сент" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:id="@+id/date_month"
+			android:textSize="@dimen/date_month_text_size" android:textColor="@color/action_bar_title_color" />
+	</LinearLayout>
+</FrameLayout>
+

@@ -1,33 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:id="@+id/row" android:layout_width="fill_parent"
-	android:layout_height="wrap_content" android:minHeight="84dip">
-	<FrameLayout android:layout_width="50dip"
-		android:layout_height="50dip" android:background="@drawable/date_background"
-		android:layout_weight="0" android:layout_gravity="center_vertical"
-		android:layout_marginLeft="7dip">
-		<LinearLayout android:id="@+id/date_container"
-			android:orientation="vertical" android:layout_width="wrap_content"
-			android:layout_height="wrap_content" android:layout_gravity="center"
-			android:gravity="center_horizontal">
-			<TextView android:text="25" android:layout_width="wrap_content"
-				android:layout_height="wrap_content" android:id="@+id/date_day"
-				android:textSize="18sp" android:textColor="#fff" android:textStyle="bold"/>
-			<TextView android:text="сент" android:layout_width="wrap_content"
-				android:layout_height="wrap_content" android:id="@+id/date_month"
-				android:textSize="10sp" android:textColor="#fff" />
-		</LinearLayout>
-	</FrameLayout>
+	android:layout_height="wrap_content" android:minHeight="@dimen/postage_list_item_min_height">
+	<include layout="@layout/date_field" android:layout_width="@dimen/date_circle_size"
+		android:layout_height="@dimen/date_circle_size" android:layout_weight="0"
+		android:layout_gravity="center_vertical" android:layout_marginLeft="@dimen/gap_small" />
 	<LinearLayout android:orientation="vertical"
 		android:layout_width="fill_parent" android:layout_height="wrap_content"
 		android:padding="5dip" android:gravity="center_horizontal"
 		android:layout_weight="1" android:layout_gravity="center_vertical">
-		<TextView android:text="EE969565046US" android:layout_width="wrap_content"
-			android:layout_height="wrap_content" android:id="@+id/title"
-			android:textSize="10sp" android:textColor="#39596B" />
-		<TextView android:text="Импорт EMS" android:layout_width="wrap_content"
-			android:layout_height="wrap_content" android:id="@+id/status"
-			android:textSize="16sp" android:textStyle="bold" android:textColor="#1E82BC"
-			android:gravity="center_horizontal" />
+		<TextView style="@style/listItemSecondaryText" android:text="EE969565046US"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:id="@+id/title" />
+		<TextView style="@style/listItemPrimaryText" android:text="Импорт EMS"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:id="@+id/status" />
 	</LinearLayout>
 </LinearLayout>

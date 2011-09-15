@@ -2,16 +2,18 @@
 <LinearLayout android:id="@+id/container"
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="wrap_content" android:layout_height="wrap_content"
-	android:layout_gravity="center"
-	android:orientation="vertical">
-    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceMedium" android:text="Номер посылки*" android:id="@+id/textView1"></TextView>
+	android:layout_gravity="center" android:orientation="vertical">
+	<TextView style="@style/FormLabel" android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:text="@string/postage_number"/>
 	<EditText android:id="@+id/tracking_number"
-		android:layout_height="wrap_content" android:layout_width="260dip">
+		android:layout_height="wrap_content" android:layout_width="@dimen/input_width">
 		<requestFocus></requestFocus>
 	</EditText>
-	<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceMedium" android:text="Название" android:id="@+id/textView2"></TextView>
-	<EditText android:id="@+id/name" android:layout_width="260dip" android:layout_height="wrap_content"></EditText>
+	<TextView style="@style/FormLabel" android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:text="@string/postage_label"/>
+	<EditText android:id="@+id/name" android:layout_width="@dimen/input_width"
+		android:layout_height="wrap_content"/>
 	<Button android:id="@+id/add" android:layout_width="wrap_content"
-		android:layout_height="wrap_content" android:text="Добавить"
-		android:onClick="add" android:layout_gravity="center_horizontal"/>
+		android:layout_height="wrap_content" android:text="@string/add"
+		android:onClick="add" android:layout_gravity="center_horizontal" />
 </LinearLayout>

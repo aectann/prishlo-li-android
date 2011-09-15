@@ -9,9 +9,8 @@
 	<item>
 		<shape>
 			<corners android:radius="5dip" />
-			<gradient android:gradientRadius="650" android:startColor="#201E82BC"
-				android:endColor="#0fff" android:type="radial" android:centerY="0"
-				android:centerX="0" />
+			<gradient android:gradientRadius="1000" android:startColor="@color/secondary_text_color"
+				android:endColor="#0fff" android:type="radial" android:centerY="5"/>
 		</shape>
 	</item>
 </layer-list>

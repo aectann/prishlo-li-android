@@ -1,20 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
    	<style parent="Theme.Sherlock.Light" name="ActionBar">
-		<item name="abBackground">#1E82BC</item>
+		<item name="abBackground">@color/main_theme_color</item>
 		<item name="abTitleTextStyle">@style/ActionBar.Title</item>
 		<item name="abIcon">@android:color/transparent</item>
     </style>
     
     <style name="ActionBar.Title">
-    	<item name="android:textColor">#fff</item>
+    	<item name="android:textColor">@color/action_bar_title_color</item>
     	<item name="android:textStyle">bold</item>
-    	<item name="android:textSize">18sp</item>
+    	<item name="android:textSize">@dimen/text_size_big</item>
     </style>
     <style name="EmptyViewText">
     	<item name="android:gravity">center</item>
-    	<item name="android:textColor">#1E82BC</item>
+    	<item name="android:textColor">@color/main_theme_color</item>
     	<item name="android:textStyle">bold</item>
-    	<item name="android:textSize">18sp</item>
+    	<item name="android:textSize">@dimen/text_size_big</item>
+    </style>
+    <style name="FormLabel" parent="android:Widget.Holo.Light.TextView">
+        <item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
+    </style>
+    <style name="listItemPrimaryText" parent="android:Widget.Holo.Light.TextView">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textColor">@color/main_theme_color</item>
+        <item name="android:textSize">@dimen/list_item_primary_text_size</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="listItemSecondaryText" parent="android:Widget.Holo.Light.TextView">
+        <item name="android:textColor">@color/secondary_text_color</item>
+        <item name="android:textSize">@dimen/list_item_secondary_text_size</item>
     </style>
 </resources>
