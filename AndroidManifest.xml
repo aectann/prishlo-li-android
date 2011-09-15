@@ -12,9 +12,9 @@
 				<category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
 		</activity>
-		<activity android:name=".AddPostageActivity" android:label="@string/app_name">
+		<activity android:name=".AddPostageActivity">
 		</activity>
-		<activity android:name=".PostageActivity" android:label="@string/app_name">
+		<activity android:name=".PostageActivity">
 		</activity>
 		<receiver android:name="PostageStatusWidgetProvider">
 			<intent-filter>
