@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+	<item>
+		<shape>
+			<corners android:radius="@dimen/gap_tiny" />
+			<solid android:color="@color/widget_background_color" />
+		</shape>
+	</item>
+	<item>
+		<shape>
+			<corners android:radius="@dimen/gap_tiny" />
+			<gradient android:gradientRadius="666" android:startColor="@color/secondary_theme_color"
+				android:endColor="@android:color/transparent" android:type="radial" android:centerY="4"/>
+		</shape>
+	</item>
+</layer-list>
