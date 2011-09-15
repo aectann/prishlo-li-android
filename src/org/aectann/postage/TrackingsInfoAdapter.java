@@ -61,7 +61,7 @@ final class TrackingsInfoAdapter extends BaseAdapter {
     }
     TrackingInfo item = getItem(position);
     String status = item.getStatus();
-    holder.status.setText(status != null ? status : "Нет данных");
+    holder.status.setText(status != null ? status : context.getResources().getString(R.string.no_data));
     holder.title.setText(item.getName());
     Date date = (Date) item.getDate();
     if (date != null) {

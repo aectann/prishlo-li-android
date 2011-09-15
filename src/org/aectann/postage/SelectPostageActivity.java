@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.RemoteViews;
+import android.widget.Toast;
 
 public class SelectPostageActivity extends PostageListActivity {
 
@@ -23,6 +24,7 @@ public class SelectPostageActivity extends PostageListActivity {
     if (extras != null) {
       mAppWidgetId = extras.getInt(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
     }
+    Toast.makeText(this, R.string.select_a_postage, Toast.LENGTH_SHORT).show();
   }
 
   @Override

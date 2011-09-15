@@ -81,8 +81,8 @@ public class PostageListActivity extends AsyncTaskAwareActivity {
       
       protected void onPreExecute() {
         dialog = new ProgressDialog(PostageListActivity.this);
-        dialog.setTitle("Обновление");
-        dialog.setMessage("Загружаем данные о посылках");
+        dialog.setTitle(getString(R.string.updating));
+        dialog.setMessage(getString(R.string.loading_postages_data));
         dialog.setIndeterminate(false);
         dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
         dialog.setMax(trackingNumbers.length);
@@ -124,7 +124,7 @@ public class PostageListActivity extends AsyncTaskAwareActivity {
             
             @Override
             protected void onPreExecute() {
-              dialog = ProgressDialog.show(PostageListActivity.this, "Поиск", "Ищем информацию о послылке..");
+              dialog = ProgressDialog.show(PostageListActivity.this, getString(R.string.search), getString(R.string.searching_postage_data));
             }
             
             protected void onProgressUpdate(TrackingInfo... values) {

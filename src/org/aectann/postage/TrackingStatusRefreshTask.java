@@ -39,10 +39,10 @@ public class TrackingStatusRefreshTask extends AsyncTask<String, TrackingInfo, S
         if (trackingInfo != null) {
           publishProgress(trackingInfo);
         } else {
-          return "Ошибка при загрузке статуса.";
+          return context.getString(R.string.error_loading_postage_data);
         }
       } catch (Exception e) {
-        return "Ошибка при загрузке статуса.";
+        return context.getString(R.string.error_loading_postage_data);
       }
     }
     return null;

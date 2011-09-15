@@ -30,7 +30,7 @@ public class AddPostageActivity extends FragmentActivity {
       setResult(RESULT_OK, data);
       finish();
     } else {
-      Toast.makeText(this, "Укажите номер посылки", Toast.LENGTH_SHORT).show();
+      Toast.makeText(this, R.string.provide_postage_number, Toast.LENGTH_SHORT).show();
     }
   }
   
