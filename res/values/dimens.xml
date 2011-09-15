@@ -14,4 +14,5 @@
     <dimen name="list_item_secondary_text_size">10sp</dimen>
     <dimen name="list_item_primary_text_size">16sp</dimen>
     <dimen name="text_size_big">18sp</dimen>
+    <dimen name="text_size_medium">16sp</dimen>
 </resources>
