@@ -9,8 +9,8 @@
 	<item>
 		<shape>
 			<corners android:radius="@dimen/gap_tiny" />
-			<gradient android:gradientRadius="1000" android:startColor="@color/secondary_theme_color"
-				android:endColor="@android:color/transparent" android:type="radial" android:centerY="5"/>
+			<gradient android:gradientRadius="500" android:startColor="@color/secondary_theme_color"
+				android:endColor="@android:color/transparent" android:type="radial" android:centerY="4"/>
 		</shape>
 	</item>
 </layer-list>
