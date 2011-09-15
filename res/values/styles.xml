@@ -7,7 +7,7 @@
     </style>
     
     <style name="ActionBar.Title">
-    	<item name="android:textColor">@color/action_bar_title_color</item>
+    	<item name="android:textColor">@color/inversed_text_color</item>
     	<item name="android:textStyle">bold</item>
     	<item name="android:textSize">@dimen/text_size_big</item>
     </style>
@@ -27,7 +27,7 @@
         <item name="android:textStyle">bold</item>
     </style>
     <style name="listItemSecondaryText" parent="android:Widget.Holo.Light.TextView">
-        <item name="android:textColor">@color/secondary_text_color</item>
+        <item name="android:textColor">@color/secondary_theme_color</item>
         <item name="android:textSize">@dimen/list_item_secondary_text_size</item>
     </style>
 </resources>

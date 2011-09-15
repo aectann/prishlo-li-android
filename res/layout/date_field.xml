@@ -8,11 +8,11 @@
 		android:gravity="center_horizontal">
 		<TextView android:text="25" android:layout_width="wrap_content"
 			android:layout_height="wrap_content" android:id="@+id/date_day"
-			android:textSize="@dimen/date_day_text_size" android:textColor="@color/action_bar_title_color"
+			android:textSize="@dimen/date_day_text_size" android:textColor="@color/inversed_text_color"
 			android:textStyle="bold" />
 		<TextView android:text="сент" android:layout_width="wrap_content"
 			android:layout_height="wrap_content" android:id="@+id/date_month"
-			android:textSize="@dimen/date_month_text_size" android:textColor="@color/action_bar_title_color" />
+			android:textSize="@dimen/date_month_text_size" android:textColor="@color/inversed_text_color" />
 	</LinearLayout>
 </FrameLayout>
 

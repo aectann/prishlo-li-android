@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="main_theme_color">#1E82BC</color>
-    <color name="secondary_text_color">#39596B</color>
-    <color name="action_bar_title_color">#FFF</color>
+    <color name="secondary_theme_color">#39596B</color>
+    <color name="inversed_text_color">#FFF</color>
+    <color name="widget_background_color">#FFF</color>
 </resources>
