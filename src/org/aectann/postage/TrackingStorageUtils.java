@@ -19,7 +19,7 @@ public class TrackingStorageUtils {
 
   public static void delete(Context context, String trackingNumber){
     try {
-      File trackingFile = new File(context.getDir(Constants.TRACKINGS, MODE_PRIVATE), trackingNumber);
+      File trackingFile = getTrackingFile(context, trackingNumber);
       if (trackingFile.exists()) {
         trackingFile.delete();
       }
@@ -30,7 +30,7 @@ public class TrackingStorageUtils {
 
   public static void store(Context context, TrackingInfo trackingInfo){
     try {
-      File trackingFile = new File(context.getDir(Constants.TRACKINGS, MODE_PRIVATE), trackingInfo.getTrackingNumber());
+      File trackingFile = getTrackingFile(context, trackingInfo.getTrackingNumber());
       if (trackingFile.exists()) {
         trackingFile.delete();
       }
@@ -45,7 +45,7 @@ public class TrackingStorageUtils {
   public static TrackingInfo loadStoredTrackingInfo(String trackingNumber, Context context) {
     ObjectInput in = null;
     try {
-      File trackingFile = new File(context.getDir(Constants.TRACKINGS, MODE_PRIVATE), trackingNumber);
+      File trackingFile = getTrackingFile(context, trackingNumber);
       in = new ObjectInputStream(new FileInputStream(trackingFile));
       return (TrackingInfo) in.readObject();
     } catch (FileNotFoundException e) {
@@ -62,9 +62,17 @@ public class TrackingStorageUtils {
     }
   }
 
+  public static boolean isStored(Context context, String trackingNumber) {
+    return getTrackingFile(context, trackingNumber).exists();
+  }
+  
   public static boolean isUpdateNeeded(Context context, String trackingNumber) {
-    File trackingFile = new File(context.getDir(Constants.TRACKINGS, MODE_PRIVATE), trackingNumber);
+    File trackingFile = getTrackingFile(context, trackingNumber);
     return !trackingFile.exists() || System.currentTimeMillis() - trackingFile.lastModified() > FOUR_HOURS;
+  }
+
+  private static File getTrackingFile(Context context, String trackingNumber) {
+    return new File(context.getDir(Constants.TRACKINGS, MODE_PRIVATE), trackingNumber);
   }
 
 }

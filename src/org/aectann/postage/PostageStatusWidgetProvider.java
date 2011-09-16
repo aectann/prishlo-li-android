@@ -1,5 +1,10 @@
 package org.aectann.postage;
 
+import static org.aectann.postage.TrackingStorageUtils.isStored;
+import static org.aectann.postage.TrackingStorageUtils.isUpdateNeeded;
+import static org.aectann.postage.TrackingStorageUtils.loadStoredTrackingInfo;
+import static org.aectann.postage.TrackingStorageUtils.store;
+
 import java.util.Date;
 
 import javax.xml.parsers.FactoryConfigurationError;
@@ -29,15 +34,18 @@ public class PostageStatusWidgetProvider extends AppWidgetProvider {
       RemoteViews views) throws FactoryConfigurationError {
     String trackingNumber = PreferenceManager.getDefaultSharedPreferences(context).getString(String.valueOf(id), null);
     if (trackingNumber != null) {
-      TrackingInfo trackingInfo;
-      if (TrackingStorageUtils.isUpdateNeeded(context, trackingNumber)) {
-        trackingInfo = TrackingStatusRefreshTask.syncRequest(context, trackingNumber);
-      } else {
-        trackingInfo = TrackingStorageUtils.loadStoredTrackingInfo(trackingNumber, context);
+      TrackingInfo trackingInfo = null;
+      if (isStored(context, trackingNumber)) {
+        if (isUpdateNeeded(context, trackingNumber)) {
+          trackingInfo = TrackingStatusRefreshTask.syncRequest(context, trackingNumber);
+          store(context, trackingInfo);
+        } else {
+          trackingInfo = loadStoredTrackingInfo(trackingNumber, context);
+        }
       }
       if (trackingInfo != null) {
         String status = trackingInfo.getStatus();
-        views.setTextViewText(R.id.status, status != null ? status : "Нет данных");
+        views.setTextViewText(R.id.status, status != null ? status : context.getString(R.string.no_data));
         views.setTextViewText(R.id.title, trackingInfo.getName());
         Date date = (Date) trackingInfo.getDate();
         if (date != null) {
@@ -54,6 +62,12 @@ public class PostageStatusWidgetProvider extends AppWidgetProvider {
         PendingIntent pendingAppIntent = PendingIntent.getActivity(context, 0, showPostageInfo, 0);
         views.setOnClickPendingIntent(R.id.widget, pendingAppIntent);
         appWidgetManager.updateAppWidget(id, views);
+      } else {
+        views.setTextViewText(R.id.status, context.getString(R.string.no_data));
+        views.setViewVisibility(R.id.title, View.GONE);
+        views.setTextViewText(R.id.date_month,"");
+        views.setViewVisibility(R.id.date_month, View.GONE);
+        views.setTextViewText(R.id.date_day, "X");
       }
     }
   }
