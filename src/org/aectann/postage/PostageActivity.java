@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class PostageActivity extends AsyncTaskAwareActivity {
 
@@ -36,6 +37,11 @@ public class PostageActivity extends AsyncTaskAwareActivity {
     String tracking = getTrackingNumber();
     trackingNumber.setText(tracking);
     TrackingInfo trackingInfo = TrackingStorageUtils.loadStoredTrackingInfo(tracking, this);
+    if (trackingInfo == null) {
+      Toast.makeText(this, R.string.parcel_not_found_in_your_list, Toast.LENGTH_LONG).show();
+      finish();
+      return;
+    }
     setTitle(trackingInfo.getName());
     list = (ListView) findViewById(R.id.list);
     list.setEmptyView(findViewById(R.id.empty));
@@ -120,7 +126,7 @@ public class PostageActivity extends AsyncTaskAwareActivity {
   private String getTrackingNumber() {
     String trackingNumber = getIntent().getStringExtra(Constants.TRACKING_NUMBER);
     if (trackingNumber == null || trackingNumber.length() == 0) {
-      trackingNumber = getIntent().getData().getEncodedSchemeSpecificPart();
+      trackingNumber = getIntent().getData().getSchemeSpecificPart();
     }
     return trackingNumber;
   }
