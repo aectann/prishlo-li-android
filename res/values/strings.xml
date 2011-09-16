@@ -18,4 +18,5 @@
     <string name="add">Добавить</string>
     <string name="press_plus_to_add_a_postage">Нажмите + чтобы добавить посылку</string>
     <string name="postage_number_label">Номер посылки</string>
+    <string name="parcel_not_found_in_your_list">Посылка не найдена в вашем списке.</string>
 </resources>
