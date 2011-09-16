@@ -99,6 +99,7 @@ public class PostageListActivity extends AsyncTaskAwareActivity {
       
       protected void onPostExecute(String result) {
         dialog.dismiss();
+        PostageStatusWidgetProvider.updateWidgets(PostageListActivity.this, trackingNumbers);
         reloadFromStorage();
         Postages application = (Postages) getApplication();
         application.setListUpdated();

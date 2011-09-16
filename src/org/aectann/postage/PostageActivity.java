@@ -90,6 +90,7 @@ public class PostageActivity extends AsyncTaskAwareActivity {
     switch (item.getItemId()) {
       case R.id.delete:
         TrackingStorageUtils.delete(this, getTrackingNumber());
+        PostageStatusWidgetProvider.updateWidgets(this, getTrackingNumber());
         finish();
         break;
       case R.id.refresh:
@@ -112,6 +113,7 @@ public class PostageActivity extends AsyncTaskAwareActivity {
           
           @Override
           protected void onPostExecute(String result) {
+            PostageStatusWidgetProvider.updateWidgets(PostageActivity.this, getTrackingNumber());
             updateList(updated);
             dialog.dismiss();
           }
