@@ -61,7 +61,6 @@ public class PostageStatusWidgetProvider extends AppWidgetProvider {
         showPostageInfo.setData(Uri.fromParts(context.getPackageName(), trackingNumber, null));
         PendingIntent pendingAppIntent = PendingIntent.getActivity(context, 0, showPostageInfo, 0);
         views.setOnClickPendingIntent(R.id.widget, pendingAppIntent);
-        appWidgetManager.updateAppWidget(id, views);
       } else {
         views.setTextViewText(R.id.status, context.getString(R.string.no_data));
         views.setViewVisibility(R.id.title, View.GONE);
@@ -69,6 +68,7 @@ public class PostageStatusWidgetProvider extends AppWidgetProvider {
         views.setViewVisibility(R.id.date_month, View.GONE);
         views.setTextViewText(R.id.date_day, "X");
       }
+      appWidgetManager.updateAppWidget(id, views);
     }
   }
   
