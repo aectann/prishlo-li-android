@@ -41,7 +41,7 @@ public class AddPostageActivity extends FragmentActivity {
     CharSequence text = trackingNumber.getText();
     if (text.length() > 0) {
       Intent data = new Intent();
-      data.putExtra(Constants.TRACKING_NUMBER, text.toString());
+      data.putExtra(Constants.TRACKING_NUMBER, text.toString().trim());
       data.putExtra(Constants.NAME, name.getText().toString());
       setResult(RESULT_OK, data);
       finish();
