@@ -21,12 +21,13 @@ package org.aectann.postage;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.view.Menu;
-import android.support.v4.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
 
 public class PostageListActivity extends AsyncTaskAwareActivity {
 
@@ -60,7 +61,7 @@ public class PostageListActivity extends AsyncTaskAwareActivity {
   
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
-    getMenuInflater().inflate(R.menu.list_menu, menu);
+    getSupportMenuInflater().inflate(R.menu.list_menu, menu);
     return super.onCreateOptionsMenu(menu);
   }
   

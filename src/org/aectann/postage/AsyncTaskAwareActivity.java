@@ -23,9 +23,10 @@ import java.util.Iterator;
 import java.util.List;
 
 import android.os.AsyncTask;
-import android.support.v4.app.FragmentActivity;
 
-public class AsyncTaskAwareActivity extends FragmentActivity {
+import com.actionbarsherlock.app.SherlockFragmentActivity;
+
+public class AsyncTaskAwareActivity extends SherlockFragmentActivity {
 
   @SuppressWarnings("rawtypes")
   private List<AsyncTask> tasks = new ArrayList<AsyncTask>();

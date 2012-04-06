@@ -16,16 +16,23 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see http://www.gnu.org/licenses/.-->
 <resources>
    	<style parent="Theme.Sherlock.Light" name="ActionBar">
-		<item name="abBackground">@color/main_theme_color</item>
-		<item name="abTitleTextStyle">@style/ActionBar.Title</item>
-		<item name="abIcon">@android:color/transparent</item>
+		<item name="actionBarStyle">@style/Widget.Styled.ActionBar</item>
+        <item name="android:actionBarStyle">@style/Widget.Styled.ActionBar</item>
     </style>
     
-    <style name="ActionBar.Title">
+    <style name="ActionBar.Title" parent="TextAppearance.Sherlock.Widget.ActionBar.Title">
     	<item name="android:textColor">@color/inversed_text_color</item>
     	<item name="android:textStyle">bold</item>
     	<item name="android:textSize">@dimen/text_size_big</item>
     </style>
+    
+    <style name="Widget.Styled.ActionBar" parent="Widget.Sherlock.Light.ActionBar.Solid.Inverse">
+        <item name="background">@color/main_theme_color</item>
+        <item name="android:background">@color/main_theme_color</item>
+        <item name="titleTextStyle">@style/ActionBar.Title</item>
+        <item name="android:titleTextStyle">@style/ActionBar.Title</item>
+    </style>
+    
     <style name="EmptyViewText">
     	<item name="android:gravity">center</item>
     	<item name="android:textColor">@color/main_theme_color</item>

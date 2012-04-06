@@ -22,8 +22,6 @@ import java.util.List;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
-import android.support.v4.view.Menu;
-import android.support.v4.view.MenuItem;
 import android.text.format.DateFormat;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +29,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
 
 public class PostageActivity extends AsyncTaskAwareActivity {
 
@@ -96,7 +97,7 @@ public class PostageActivity extends AsyncTaskAwareActivity {
   
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
-    getMenuInflater().inflate(R.menu.postage_menu, menu);
+    getSupportMenuInflater().inflate(R.menu.postage_menu, menu);
     return super.onCreateOptionsMenu(menu);
   }
   
