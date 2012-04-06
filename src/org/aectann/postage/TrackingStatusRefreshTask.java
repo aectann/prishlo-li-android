@@ -99,7 +99,9 @@ public class TrackingStatusRefreshTask extends AsyncTask<String, TrackingInfo, S
           }
         }
       } catch (Exception e) {
-        e.printStackTrace();
+        if (result == null) {
+        	result = new TrackingInfo(null, tracking, null, null, null);
+        }
       } 
     }
     return result;
